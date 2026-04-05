@@ -6,7 +6,6 @@ import tempfile
 from src.logger import logging
 from src.exception import MyException
 from langchain_community.document_loaders import PyMuPDFLoader
-from entity.config_entity import TextSplitterConfig
 from entity.artifact_entity import PDFLoaderArtifact
 
 
