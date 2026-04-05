@@ -92,7 +92,7 @@ jobs:
           docker pull ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_FRONTEND_REPO }}:latest
 
       - name: Stop existing containers
-        run: docker-compose down || true
+        run: docker-compose --env-file /home/ubuntu/.env down || true
 
       - name: Start application containers
-        run: docker-compose up -d
+        run: docker-compose --env-file /home/ubuntu/.env up -d
