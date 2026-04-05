@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import sys
-import os
 from src.logger import logging
 from src.exception import MyException
 from src.ingestion.pdf_loader import PDFLoader
