@@ -1,3 +1,18 @@
+# Environment
+.env
+.venv/
+
+# Artifacts (generated at runtime)
+artifacts/*
+!artifacts/.gitkeep
+artifacts/faiss_indexes/*
+!artifacts/faiss_indexes/.gitkeep
+
+# Logs (generated at runtime)
+logs/*
+!logs/.gitkeep
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
