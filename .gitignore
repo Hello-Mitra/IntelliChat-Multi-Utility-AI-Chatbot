@@ -1,6 +1,7 @@
 # Environment
 .env
 .venv/
+intellichat-key.pem
 
 # Artifacts (generated at runtime)
 artifacts/*

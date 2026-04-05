@@ -8,3 +8,4 @@ logs/
 artifacts/
 .vscode/
 *.md
+intellichat-key.pem
