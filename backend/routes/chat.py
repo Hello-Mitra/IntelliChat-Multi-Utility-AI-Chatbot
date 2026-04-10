@@ -5,6 +5,8 @@ import json
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from langchain_core.messages import HumanMessage, AIMessage, ToolMessage
+from langchain_openai import ChatOpenAI
+from config.settings import settings
 from src.logger import logging
 from src.exception import MyException
 from src.schemas.requests import (
@@ -101,9 +103,9 @@ def generate_title(request: Request, body: dict):
         if not message:
             return {"title": "New Chat"}
 
-        logging.info(f"Title generation request — message='{message[:60]}'")
+        logging.info(f"Title generation — message='{message[:60]}'")
 
-        llm = request.app.state.llm
+        llm = ChatOpenAI(model=settings.model_name, temperature=0.2)
 
         prompt = (
             f"Generate a very short title (max 5 words) for a conversation "
@@ -116,7 +118,6 @@ def generate_title(request: Request, body: dict):
 
     except Exception as e:
         logging.error(f"Title generation error: {str(e)}")
-        # Fallback — never crash title generation
         return {"title": body.get("message", "New Chat")[:40]}
 
 
