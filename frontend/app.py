@@ -75,16 +75,10 @@ def add_thread(thread_id: str, title: str = "Current Chat") -> None:
 def generate_chat_title(first_message: str) -> str:
     try:
         data = api_post(
-            "/api/chat",
-            json={
-                "question": (
-                    f"Generate a very short title (max 5 words) for a conversation "
-                    f"that starts with: '{first_message}'. Return only the title, nothing else."
-                ),
-                "thread_id": "__title_gen__",
-            },
+            "/api/title",                         # ← new dedicated endpoint
+            json={"message": first_message},      # ← clean, no thread_id
         )
-        return data.get("answer", first_message[:40])
+        return data.get("title", first_message[:40])
     except Exception:
         return first_message[:40]
 

@@ -87,6 +87,39 @@ def chat_stream(request: Request, body: ChatRequest):
         raise HTTPException(status_code=500, detail=str(MyException(e, sys)))
 
 
+@router.post("/title")
+def generate_title(request: Request, body: dict):
+    """
+    Generate a short conversation title from the first user message.
+
+    Calls the LLM directly — does NOT use LangGraph so no checkpoint
+    is created in SQLite. This prevents title generation from appearing
+    as a fake conversation in the threads list.
+    """
+    try:
+        message = body.get("message", "")
+        if not message:
+            return {"title": "New Chat"}
+
+        logging.info(f"Title generation request — message='{message[:60]}'")
+
+        llm = request.app.state.llm
+
+        prompt = (
+            f"Generate a very short title (max 5 words) for a conversation "
+            f"that starts with: '{message}'. Return only the title, nothing else."
+        )
+
+        title = llm.invoke(prompt).content.strip()
+        logging.info(f"Title generated: '{title}'")
+        return {"title": title}
+
+    except Exception as e:
+        logging.error(f"Title generation error: {str(e)}")
+        # Fallback — never crash title generation
+        return {"title": body.get("message", "New Chat")[:40]}
+
+
 @router.get("/threads", response_model=ThreadsResponse)
 def get_threads(request: Request):
     """Return all known threads with their titles."""
@@ -99,6 +132,9 @@ def get_threads(request: Request):
 
         for checkpoint in checkpointer.list(None):
             thread_id = checkpoint.config["configurable"]["thread_id"]
+            # ✅ Filter out the old title generation thread if it exists
+            if thread_id == "__title_gen__":
+                continue
             all_threads[thread_id] = "Previous Chat"
 
         saved_titles = title_store.get_all()
