@@ -1,13 +1,13 @@
 # IntelliChat — Multi Utility AI Chatbot
 
-> A production-grade AI chatbot with RAG, web search, stock prices, calculator, persistent memory, and multi-thread conversation management — built with LangGraph, FastAPI, and Streamlit.
-
 ![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat-square&logo=python)
 ![LangGraph](https://img.shields.io/badge/LangGraph-1.1.3-green?style=flat-square)
 ![FastAPI](https://img.shields.io/badge/FastAPI-latest-009688?style=flat-square&logo=fastapi)
 ![Streamlit](https://img.shields.io/badge/Streamlit-latest-FF4B4B?style=flat-square&logo=streamlit)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=flat-square&logo=docker)
 ![AWS](https://img.shields.io/badge/AWS-EC2%20%2B%20ECR-FF9900?style=flat-square&logo=amazonaws)
+
+A production-grade AI chatbot with RAG, web search, stock prices, calculator, persistent memory, and multi-thread conversation management — built with LangGraph, FastAPI, and Streamlit.
 
 **Live Demo:** [http://32.199.24.216:8501](http://32.199.24.216:8501)
 
