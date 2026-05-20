@@ -9,6 +9,8 @@
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=flat-square&logo=docker)
 ![AWS](https://img.shields.io/badge/AWS-EC2%20%2B%20ECR-FF9900?style=flat-square&logo=amazonaws)
 
+**Live Demo:** [http://32.199.24.216:8501](http://32.199.24.216:8501)
+
 ---
 
 ## Features
